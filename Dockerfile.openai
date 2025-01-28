@@ -1,0 +1,15 @@
+FROM python:3.9-slim AS base
+
+WORKDIR /app
+
+COPY openai-bot/requirements.txt .
+
+RUN pip install -r requirements.txt 
+
+COPY . .
+
+EXPOSE 8500:8501
+
+WORKDIR /app/openai-bot
+
+CMD ["streamlit", "run", "main.py"]
