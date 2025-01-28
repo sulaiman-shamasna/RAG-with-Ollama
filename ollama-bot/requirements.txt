@@ -1,0 +1,9 @@
+langchain
+langchain_community
+chromadb
+pymupdf
+streamlit
+streamlit_chat
+python-dotenv
+openai
+tiktoken
