@@ -1,0 +1,21 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama_service
+    ports:
+      - "11410:11434"
+    volumes:
+      - ./models/.ollama:/root/.ollama
+
+  chatbot:
+    build:
+      context: ./ollama-bot
+    container_name: chatbot_service
+    ports:
+      - "8700:8501"
+    volumes:
+      - .vectorstore:/app/vectorstore
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_API_URL=http://ollama:11434
